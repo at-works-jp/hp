@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A&amp;T Works｜高木 務</title>
+<meta name="description" content="高木 務（たかぎ つとむ）。わかりにくいことを 遊びや計算で 自分でわかる形にしています。Mendomi Lab・せいどラガ・どこ高？を作っています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<style>
+  :root{
+    --bg:#FAF9F6; --card:#FFFFFF; --ink:#1F1F1F; --muted:#6A6A6A; --line:#E6E2DA;
+    --accent:#E0702B; --accent-ink:#FFFFFF; --accent-soft:#FBEDE3;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --font:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.85; }
+  a{ color:inherit; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 20px; }
+
+  header.top{ border-bottom:1px solid var(--line); }
+  header.top .wrap{ display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .brand{ font-weight:700; letter-spacing:.12em; font-size:14px; }
+  .brand span{ color:var(--accent); }
+  header nav a{ font-size:14px; color:var(--muted); text-decoration:none; margin-left:18px; }
+  header nav a:hover{ color:var(--ink); }
+
+  /* 1. この人は何者か */
+  .who{ padding:48px 0 40px; }
+  .who-head{ display:flex; gap:22px; align-items:center; }
+  .face{ flex:0 0 auto; text-align:center; }
+  .face img{ width:112px; height:112px; border-radius:50%; display:block; border:3px solid var(--accent); background:#fff; }
+  .note{ font-size:12px; color:var(--muted); margin:10px 0 0; line-height:1.5; }
+  .name{ font-size:28px; font-weight:700; margin:0; line-height:1.3; }
+  .yomi{ font-size:13px; color:var(--muted); margin:2px 0 0; }
+  .catch{ font-size:21px; font-weight:700; line-height:1.6; margin:28px 0 8px; }
+  .catch em{ font-style:normal; background:linear-gradient(transparent 62%, var(--accent-soft) 62%); }
+  .one{ margin:0 0 22px; color:var(--ink); }
+  .good{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; }
+  .good h2{ font-size:14px; color:var(--muted); font-weight:700; margin:0 0 6px; letter-spacing:.06em; }
+  .good ul{ margin:0; padding-left:1.2em; }
+  .good li{ margin:4px 0; }
+
+  section.block{ padding:40px 0; border-top:1px solid var(--line); }
+  section.block > .wrap > h2{ font-size:22px; margin:0 0 6px; }
+  .sub{ color:var(--muted); margin:0 0 22px; font-size:15px; }
+
+  /* 2. 作っているもの */
+  .works{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .work{ display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s; }
+  .work:hover,.work:focus-visible{ border-color:var(--accent); transform:translateY(-2px); outline:none; }
+  .thumb{ aspect-ratio:4/3; background:#EFECE6; overflow:hidden; border-bottom:1px solid var(--line); }
+  .thumb img{ width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .thumb.seido{ display:flex; flex-direction:column; justify-content:center; align-items:center; gap:6px; background:#F3F6F4; color:#2E5D4B; }
+  .thumb.seido b{ font-size:22px; }
+  .thumb.seido span{ font-size:12px; color:#6A7F76; }
+  .wbody{ padding:14px 16px 16px; display:flex; flex-direction:column; flex:1; }
+  .wbody h3{ font-size:18px; margin:0 0 4px; }
+  .wbody p{ margin:0; font-size:14.5px; line-height:1.75; }
+  .nums{ display:flex; gap:14px; margin-top:8px; font-size:13px; color:var(--muted); }
+  .nums strong{ color:var(--accent); font-size:15px; }
+  .go{ margin-top:auto; padding-top:10px; font-size:13px; color:var(--accent); font-weight:700; }
+
+  /* 3. お問い合わせ */
+  .contact{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 22px 24px; }
+  .contact p{ margin:0 0 4px; }
+  .mail{ display:inline-block; margin-top:16px; background:var(--accent); color:var(--accent-ink); text-decoration:none; font-weight:700; padding:13px 26px; border-radius:999px; }
+  .mail:hover,.mail:focus-visible{ background:var(--ink); outline:none; }
+
+  footer{ border-top:1px solid var(--line); padding:28px 0 48px; color:var(--muted); font-size:13px; line-height:1.9; }
+  footer a{ color:var(--muted); }
+
+
+  /* 凝ってる要素 */
+  .strip{ overflow:hidden; padding:6px 0 28px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
+  .strip-track{ display:flex; gap:12px; width:max-content; animation:flow 70s linear infinite; }
+  .strip:hover .strip-track{ animation-play-state:paused; }
+  .strip img{ width:96px; height:192px; object-fit:cover; object-position:top; border-radius:10px; border:1px solid var(--line); background:#fff; display:block; }
+  .strip img:nth-child(odd){ transform:translateY(10px); }
+  @keyframes flow{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .hnum{ display:flex; align-items:baseline; gap:12px; margin:0 0 6px; }
+  .hnum b{ font-family:var(--mono); font-weight:600; font-size:13px; color:var(--accent); letter-spacing:.08em; }
+  .hnum b::after{ content:""; display:inline-block; width:28px; height:2px; background:var(--accent); vertical-align:middle; margin-left:10px; }
+  .hnum h2{ font-size:22px; margin:0; }
+  .nums strong{ font-family:var(--mono); }
+  .thumb img.pan{ object-fit:cover; object-position:50% 0; transition:object-position 3.2s ease; }
+  .work:hover .thumb img.pan, .work:focus-visible .thumb img.pan{ object-position:50% 100%; }
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.on{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .strip-track{ animation:none; } .reveal{ opacity:1; transform:none; transition:none; } .thumb img.pan{ transition:none; } }
+
+
+  /* v3：もっと凝る */
+  .hero{ display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center; }
+  .face-wrap{ position:relative; width:220px; height:220px; }
+  .face-wrap img{ width:180px; height:180px; position:absolute; left:20px; top:20px; border-radius:50%; border:4px solid var(--accent); background:#fff; }
+  .stk{ position:absolute; font-size:12px; font-weight:700; padding:4px 10px; border-radius:6px; white-space:nowrap; box-shadow:0 2px 0 rgba(0,0,0,.18); border:2px solid var(--ink); background:#fff; transition:transform .25s; }
+  .stk:hover{ transform:rotate(0) scale(1.08) !important; }
+  .stk.s1{ left:-6px; top:8px; transform:rotate(-12deg); background:var(--accent); color:#fff; }
+  .stk.s2{ right:-18px; top:30px; transform:rotate(9deg); background:#F2C230; }
+  .stk.s3{ left:-14px; bottom:30px; transform:rotate(7deg); }
+  .stk.s4{ right:-8px; bottom:6px; transform:rotate(-8deg); background:var(--ink); color:#fff; }
+  .stk.s5{ left:84px; top:-10px; transform:rotate(4deg); border-radius:999px; background:#fff; font-size:13px; }
+  .big{ font-size:38px; line-height:1.45; font-weight:700; margin:0; letter-spacing:.01em; }
+  .big .box{ display:inline-block; border:3px solid var(--ink); padding:0 .18em; margin-right:.06em; background:#fff; box-shadow:5px 5px 0 var(--accent); line-height:1.25; }
+  .who-name{ display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 14px; margin:34px 0 10px; }
+  .who-name .name{ font-size:24px; }
+  .who-name .yomi{ margin:0; }
+  .who-name .note{ margin:0; flex-basis:100%; }
+
+  .ticker{ background:var(--ink); color:#fff; overflow:hidden; padding:12px 0; }
+  .ticker-track{ display:flex; width:max-content; animation:flow 40s linear infinite; font-weight:700; font-size:15px; letter-spacing:.04em; }
+  .ticker-track span{ padding:0 18px; }
+  .ticker-track span::before{ content:"#"; color:var(--accent); margin-right:2px; }
+  .strip{ padding-top:22px; }
+
+  .andon{ display:inline-flex; align-items:center; gap:12px; background:var(--ink); color:#fff; border-radius:8px; padding:8px 18px 8px 14px; margin:0 0 12px; box-shadow:0 3px 0 rgba(0,0,0,.15); }
+  .andon .lamp{ width:12px; height:12px; border-radius:50%; background:#3BD16F; box-shadow:0 0 0 3px rgba(59,209,111,.18),0 0 12px #3BD16F; animation:lamp 2.4s ease-in-out infinite; }
+  .andon b{ font-family:var(--mono); font-weight:600; font-size:14px; color:#F2C230; letter-spacing:.08em; }
+  .andon h2{ font-size:20px; margin:0; color:#fff; }
+  @keyframes lamp{ 0%,100%{ opacity:1; } 50%{ opacity:.45; } }
+
+  .policy{ background:var(--ink); color:#fff; padding:64px 0 72px; }
+  .policy .andon{ background:#fff; color:var(--ink); }
+  .policy .andon h2{ color:var(--ink); }
+  .policy .andon b{ color:var(--accent); }
+  .fill{ font-size:26px; font-weight:700; line-height:1.75; margin:18px 0 0; }
+  .fill p{ margin:0 0 18px; }
+  .fill .c{ color:rgba(255,255,255,.18); transition:color .15s; }
+  .fill .c.on{ color:#fff; }
+  .fill .c.on.hl{ color:#F2A25E; }
+
+  @media (prefers-reduced-motion: reduce){ .ticker-track{ animation:none; } .andon .lamp{ animation:none; } .fill .c{ color:#fff; } }
+  @media (max-width:640px){
+    .hero{ grid-template-columns:1fr; gap:22px; justify-items:center; text-align:center; }
+    .big{ font-size:28px; }
+    .who-name{ justify-content:center; text-align:center; }
+    .fill{ font-size:20px; }
+  }
+
+
+  /* ===== 最大版：さらに凝る（色は落ち着いたまま） ===== */
+  section[id], .pin{ scroll-margin-top:96px; }
+  body{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  header.top{ position:sticky; top:0; z-index:20; background:rgba(250,249,246,.88); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); transition:height .3s; }
+  .who{ position:relative; overflow:hidden; }
+  .who::before{ content:""; position:absolute; inset:0; background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px); background-size:24px 24px; opacity:.55; -webkit-mask-image:radial-gradient(ellipse at 30% 30%,#000 10%,transparent 70%); mask-image:radial-gradient(ellipse at 30% 30%,#000 10%,transparent 70%); pointer-events:none; }
+  .who .wrap{ position:relative; }
+  /* 生産ライン風の進み具合 */
+  .line{ position:sticky; top:56px; z-index:19; height:30px; background:rgba(250,249,246,.9); border-bottom:1px solid var(--line); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .line .wrap{ position:relative; height:30px; }
+  .line .rail{ position:absolute; left:20px; right:20px; top:14px; height:2px; background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 12px); }
+  .line .done{ position:absolute; left:20px; top:14px; height:2px; background:var(--accent); width:0; }
+  .line .st{ position:absolute; top:7px; transform:translateX(-50%); font-family:var(--mono); font-size:10px; font-weight:600; background:var(--bg); padding:0 6px; color:var(--muted); display:flex; align-items:center; gap:4px; }
+  .line .st{ white-space:nowrap; }
+  .line .st i{ width:8px; height:8px; border-radius:50%; background:#C9C4BA; display:inline-block; transition:background .3s, box-shadow .3s; }
+  .line .st.on i{ background:#3BD16F; box-shadow:0 0 8px #3BD16F; }
+  .line .st.on{ color:var(--ink); }
+  .line .item{ position:absolute; top:9px; width:12px; height:12px; background:var(--accent); border-radius:3px; transform:translateX(-50%) rotate(45deg); box-shadow:0 0 0 3px var(--accent-soft); }
+  /* 一言が1文字ずつ出る */
+  .big .ch{ display:inline-block; opacity:0; transform:translateY(.4em); animation:pop .5s cubic-bezier(.2,.8,.2,1.2) forwards; }
+  @keyframes pop{ to{ opacity:1; transform:none; } }
+  .big .box{ box-shadow:0 0 0 var(--accent); animation:boxin .6s ease 1.3s forwards; }
+  @keyframes boxin{ to{ box-shadow:6px 6px 0 var(--accent); } }
+  /* ステッカーがふわふわ＋スクロールで少しずれる */
+  .stk{ --r:0deg; --py:0px; transform:translateY(var(--py)) rotate(var(--r)) !important; animation:bob 4s ease-in-out infinite; }
+  .stk.s1{ --r:-12deg; } .stk.s2{ --r:9deg; animation-delay:-1s; } .stk.s3{ --r:7deg; animation-delay:-2s; } .stk.s4{ --r:-8deg; animation-delay:-3s; } .stk.s5{ --r:4deg; animation-delay:-.5s; }
+  @keyframes bob{ 0%,100%{ margin-top:0; } 50%{ margin-top:-6px; } }
+  .face-wrap img{ transition:transform .4s; }
+  .face-wrap:hover img{ transform:rotate(-4deg) scale(1.03); }
+  /* 画面の帯を2段・逆向きに */
+  .strip .strip-track.rev{ animation-direction:reverse; animation-duration:90s; margin-top:14px; }
+  .strip .strip-track.rev img{ width:80px; height:160px; opacity:.85; }
+  /* アンドン：その区切りに来たら点灯 */
+  .andon .lamp{ background:#9A958C; box-shadow:none; animation:none; transition:background .4s, box-shadow .4s; }
+  .andon.lit .lamp{ background:#3BD16F; box-shadow:0 0 0 3px rgba(59,209,111,.18),0 0 12px #3BD16F; animation:lamp 2.4s ease-in-out infinite; }
+  .andon small{ font-family:var(--mono); font-size:10px; color:#9A958C; letter-spacing:.1em; margin-left:2px; }
+  .andon.lit small{ color:#3BD16F; }
+  /* カードが傾く */
+  .works{ perspective:900px; }
+  .work{ transform-style:preserve-3d; will-change:transform; }
+  .work:hover{ box-shadow:0 14px 30px rgba(0,0,0,.08); }
+  /* 大事にしていること：画面に止まって 読み終わるまで塗られる */
+  .pin{ height:200vh; background:var(--ink); }
+  .pin .policy{ position:sticky; top:86px; min-height:calc(100vh - 86px); display:flex; align-items:center; }
+  .pin .policy .wrap{ width:100%; }
+  .policy{ clip-path:none; }
+  .slant{ height:48px; background:var(--ink); clip-path:polygon(0 100%,100% 0,100% 100%); }
+  .slant.down{ clip-path:polygon(0 0,100% 0,0 100%); }
+  .meter{ margin-top:26px; height:3px; background:rgba(255,255,255,.12); border-radius:2px; overflow:hidden; }
+  .meter i{ display:block; height:100%; width:0; background:var(--accent); }
+  /* お問い合わせ */
+  .mail{ position:relative; padding-right:48px; transition:background .2s, transform .2s; }
+  .mail::after{ content:"→"; position:absolute; right:22px; top:50%; transform:translateY(-50%); transition:right .2s; }
+  .mail:hover::after{ right:16px; }
+  .open{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11px; color:#2E8B57; margin-left:10px; letter-spacing:.08em; }
+  .open i{ width:8px; height:8px; border-radius:50%; background:#3BD16F; box-shadow:0 0 8px #3BD16F; animation:lamp 2.4s infinite; }
+  .bigfoot{ font-weight:700; font-size:clamp(48px,13vw,120px); line-height:1; letter-spacing:.04em; color:transparent; -webkit-text-stroke:1.5px #D5D0C6; margin:28px 0 0; white-space:nowrap; overflow:hidden; }
+  @media (prefers-reduced-motion: reduce){ .big .ch{ animation:none; opacity:1; transform:none; } .big .box{ animation:none; box-shadow:6px 6px 0 var(--accent); } .stk{ animation:none; } .pin{ height:auto; } .pin .policy{ position:static; min-height:0; } }
+  @media (max-width:640px){ .line .st{ font-size:9px; padding:0 3px; } .pin .policy{ top:86px; } }
+
+  @media (max-width:560px){
+    .works{ grid-template-columns:1fr; }
+    .who{ padding-top:32px; }
+    .face img{ width:92px; height:92px; }
+    .name{ font-size:24px; }
+    .catch{ font-size:19px; }
+    header nav a{ margin-left:12px; }
+  }
+</style>
+<style>
+  /* 濃い黒をやめて やわらかい色に／イラストは全身（立ち姿）で置く */
+  :root{ --sand:#F1ECE3; --sand2:#E6DED0; --ink:#2A2724; }
+  .ticker{ background:var(--sand); color:var(--ink); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .andon{ background:#fff; color:var(--ink); border:1.5px solid var(--ink); box-shadow:3px 3px 0 var(--sand2); }
+  .andon h2{ color:var(--ink); }
+  .andon b{ color:var(--accent); }
+  .pin, .slant{ background:var(--sand); }
+  .policy{ background:transparent; color:var(--ink); }
+  .policy .andon{ background:#fff; }
+  .fill .c{ color:rgba(42,39,36,.14); }
+  .fill .c.on{ color:var(--ink); }
+  .fill .c.on.hl{ color:var(--accent); }
+  .meter{ background:rgba(0,0,0,.08); }
+  .stk{ border-color:var(--ink); }
+  .stk.s4{ background:#DDE8DF; color:var(--ink); }
+  .mail:hover,.mail:focus-visible{ background:#B8571C; }
+  /* 全身イラスト */
+  .hero{ grid-template-columns:260px 1fr; align-items:end; }
+  .face-wrap{ width:260px; height:auto; }
+  .face-wrap img.body{ position:relative; left:0; top:0; width:240px; height:auto; border:none; border-radius:0; background:none; mix-blend-mode:multiply; display:block; margin:0 auto;
+    -webkit-mask-image:linear-gradient(#000 82%,transparent); mask-image:linear-gradient(#000 82%,transparent); }
+  .face-wrap:hover img.body{ transform:rotate(-2deg); }
+  .stk.s5{ left:150px; top:6px; }
+  .stk.s1{ left:-8px; top:70px; }
+  .stk.s2{ right:-14px; top:130px; }
+  .stk.s3{ left:-12px; bottom:120px; top:auto; }
+  .stk.s4{ right:-4px; bottom:60px; top:auto; }
+  .big{ padding-bottom:40px; }
+  @media (max-width:640px){
+    .hero{ grid-template-columns:1fr; justify-items:center; }
+    .face-wrap{ width:230px; }
+    .face-wrap img.body{ width:210px; }
+    .big{ padding-bottom:0; }
+  }
+</style>
+<style>
+  /* 白をなくして 同じトーンの濃いめのベージュでそろえる（アプリの画面だけ白く残す） */
+  :root{ --bg:#EFE9DE; --card:#E6DDCE; --sand:#DFD4C1; --sand2:#D3C6AF; --line:#D6CBB9; --accent-soft:#F0D9C4; --muted:#6B6359; }
+  body{ background-color:var(--bg); }
+  header.top{ background:rgba(239,233,222,.9); }
+  .line{ background:rgba(239,233,222,.92); }
+  .line .st{ background:var(--bg); }
+  .good, .work, .contact{ background:var(--card); border-color:var(--line); }
+  .thumb{ background:#fff; }
+  .thumb.seido{ background:#E1E3D6; }
+  .andon, .policy .andon{ background:var(--card); box-shadow:3px 3px 0 var(--sand2); }
+  .stk{ background:var(--card); }
+  .stk.s5{ background:var(--card); }
+  .big .box{ background:var(--card); }
+  .ticker{ background:var(--card); }
+  .pin, .slant{ background:var(--sand); }
+  .strip img{ border-color:var(--line); }
+  .bigfoot{ -webkit-text-stroke:1.5px #CBBFAB; font-size:clamp(44px,12vw,96px); }
+  .who::before{ opacity:.7; }
+</style>
+<style>
+  /* 全身イラスト（差しかえ） */
+  .face-wrap{ width:270px; }
+  .face-wrap img.body{ width:auto; height:440px; -webkit-mask-image:none; mask-image:none; }
+  .stk.s5{ left:150px; top:-4px; }
+  .stk.s1{ left:-18px; top:96px; }
+  .stk.s2{ right:-20px; top:170px; }
+  .stk.s3{ left:-14px; top:270px; bottom:auto; }
+  .stk.s4{ right:-10px; top:340px; bottom:auto; }
+  .hero{ align-items:center; }
+  .big{ padding-bottom:0; }
+  @media (max-width:640px){ .face-wrap{ width:240px; } .face-wrap img.body{ height:360px; } .stk.s3{ top:220px; } .stk.s4{ top:280px; } .stk.s2{ top:140px; } .stk.s1{ top:76px; } }
+</style>
+<style>
+  .fill p.h{ font-size:26px; font-weight:700; margin:0; }
+  .fill p.s{ font-size:17px; font-weight:400; line-height:1.8; margin:6px 0 30px; }
+  .fill p.s:last-child{ margin-bottom:0; }
+  @media (max-width:640px){ .fill p.h{ font-size:21px; } .fill p.s{ font-size:15px; } }
+</style>
+<link rel="canonical" href="https://at-works.mendomilab.com/">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">A<span>&amp;</span>T WORKS</div>
+  <nav><a href="#works">作っているもの</a><a href="#contact">お問い合わせ</a></nav>
+</div></header>
+<div class="line" aria-hidden="true"><div class="wrap">
+  <div class="rail"></div><div class="done" id="lineDone"></div>
+  <span class="st" data-at="works" style="left:20%"><i></i>01 作品</span>
+  <span class="st" data-at="pin" style="left:55%"><i></i>02 大事</span>
+  <span class="st" data-at="contact" style="left:84%"><i></i>03 連絡</span>
+  <span class="item" id="lineItem" style="left:20px"></span>
+</div></div>
+
+<main>
+  <!-- 1. この人は何者か -->
+  <div class="who" data-sec="1"><div class="wrap">
+    <div class="hero">
+      <div class="face-wrap">
+        <img class="body" src="img/body_full.jpg" alt="高木 務のイラスト" width="360" height="1208">
+        <span class="stk s5">なぜ？</span>
+        <span class="stk s1">Mendomi Lab</span>
+        <span class="stk s2">せいどラガ</span>
+        <span class="stk s3">どこ高？</span>
+        <span class="stk s4">パスタ屋</span>
+      </div>
+      <h1 class="big"><span class="box">わかりにくい</span>ことを<br>遊びや計算で<br>自分でわかる形に<br>しています。</h1>
+    </div>
+    <div class="who-name">
+      <p class="name">高木 務</p>
+      <p class="yomi">たかぎ つとむ</p>
+      <p class="note">※実物は イラストほどイケオジではありません</p>
+    </div>
+    <p class="one">トヨタの元管理職に トヨタ生産方式を教えてきた人です。<br>経験でしか伝わらなかったものを 言葉で伝わる形にするのが いちばんの強みです。</p>
+    <div class="good reveal">
+      <h2>得意なこと</h2>
+      <ul>
+        <li>わかりにくいことを わかる形にすること</li>
+        <li>「そういうもんだ」「いままでそうだった」を判断に入れずに 前提から考えなおすこと</li>
+        <li>何が問題でどうしたら改善できるのかを 相手と一緒に考えること</li>
+      </ul>
+    </div>
+  </div></div>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>造りすぎ工場</span><span>サプライヤーのパズル</span><span>回らないパスタ屋</span><span>どこ高？</span><span>せいどラガ</span><span>待たせないリハビリ室</span><span>トヨタ生産方式</span><span>なぜを言葉に</span><span>造りすぎ工場</span><span>サプライヤーのパズル</span><span>回らないパスタ屋</span><span>どこ高？</span><span>せいどラガ</span><span>待たせないリハビリ室</span><span>トヨタ生産方式</span><span>なぜを言葉に</span><span>造りすぎ工場</span><span>サプライヤーのパズル</span><span>回らないパスタ屋</span><span>どこ高？</span><span>せいどラガ</span><span>待たせないリハビリ室</span><span>トヨタ生産方式</span><span>なぜを言葉に</span><span>造りすぎ工場</span><span>サプライヤーのパズル</span><span>回らないパスタ屋</span><span>どこ高？</span><span>せいどラガ</span><span>待たせないリハビリ室</span><span>トヨタ生産方式</span><span>なぜを言葉に</span></div></div>
+
+  <div class="strip" aria-hidden="true"><div class="strip-track"><img src="img/strip/factory1.jpg" alt="" loading="lazy"><img src="img/strip/pasta2.jpg" alt="" loading="lazy"><img src="img/strip/dokoko1.jpg" alt="" loading="lazy"><img src="img/strip/clinic2.jpg" alt="" loading="lazy"><img src="img/strip/factory2.jpg" alt="" loading="lazy"><img src="img/strip/pasta3.jpg" alt="" loading="lazy"><img src="img/strip/dokoko3.jpg" alt="" loading="lazy"><img src="img/strip/clinic3.jpg" alt="" loading="lazy"><img src="img/strip/factory3.jpg" alt="" loading="lazy"><img src="img/strip/pasta1.jpg" alt="" loading="lazy"><img src="img/strip/dokoko4.jpg" alt="" loading="lazy"><img src="img/strip/clinic1.jpg" alt="" loading="lazy"><img src="img/strip/factory4.jpg" alt="" loading="lazy"><img src="img/strip/pasta4.jpg" alt="" loading="lazy"><img src="img/strip/dokoko2.jpg" alt="" loading="lazy"><img src="img/strip/clinic4.jpg" alt="" loading="lazy"><img src="img/strip/factory1.jpg" alt="" loading="lazy"><img src="img/strip/pasta2.jpg" alt="" loading="lazy"><img src="img/strip/dokoko1.jpg" alt="" loading="lazy"><img src="img/strip/clinic2.jpg" alt="" loading="lazy"><img src="img/strip/factory2.jpg" alt="" loading="lazy"><img src="img/strip/pasta3.jpg" alt="" loading="lazy"><img src="img/strip/dokoko3.jpg" alt="" loading="lazy"><img src="img/strip/clinic3.jpg" alt="" loading="lazy"><img src="img/strip/factory3.jpg" alt="" loading="lazy"><img src="img/strip/pasta1.jpg" alt="" loading="lazy"><img src="img/strip/dokoko4.jpg" alt="" loading="lazy"><img src="img/strip/clinic1.jpg" alt="" loading="lazy"><img src="img/strip/factory4.jpg" alt="" loading="lazy"><img src="img/strip/pasta4.jpg" alt="" loading="lazy"><img src="img/strip/dokoko2.jpg" alt="" loading="lazy"><img src="img/strip/clinic4.jpg" alt="" loading="lazy"></div><div class="strip-track rev"><img src="img/strip/clinic4.jpg" alt="" loading="lazy"><img src="img/strip/dokoko2.jpg" alt="" loading="lazy"><img src="img/strip/pasta4.jpg" alt="" loading="lazy"><img src="img/strip/factory4.jpg" alt="" loading="lazy"><img src="img/strip/clinic1.jpg" alt="" loading="lazy"><img src="img/strip/dokoko4.jpg" alt="" loading="lazy"><img src="img/strip/pasta1.jpg" alt="" loading="lazy"><img src="img/strip/factory3.jpg" alt="" loading="lazy"><img src="img/strip/clinic3.jpg" alt="" loading="lazy"><img src="img/strip/dokoko3.jpg" alt="" loading="lazy"><img src="img/strip/pasta3.jpg" alt="" loading="lazy"><img src="img/strip/factory2.jpg" alt="" loading="lazy"><img src="img/strip/clinic2.jpg" alt="" loading="lazy"><img src="img/strip/dokoko1.jpg" alt="" loading="lazy"><img src="img/strip/pasta2.jpg" alt="" loading="lazy"><img src="img/strip/factory1.jpg" alt="" loading="lazy"><img src="img/strip/clinic4.jpg" alt="" loading="lazy"><img src="img/strip/dokoko2.jpg" alt="" loading="lazy"><img src="img/strip/pasta4.jpg" alt="" loading="lazy"><img src="img/strip/factory4.jpg" alt="" loading="lazy"><img src="img/strip/clinic1.jpg" alt="" loading="lazy"><img src="img/strip/dokoko4.jpg" alt="" loading="lazy"><img src="img/strip/pasta1.jpg" alt="" loading="lazy"><img src="img/strip/factory3.jpg" alt="" loading="lazy"><img src="img/strip/clinic3.jpg" alt="" loading="lazy"><img src="img/strip/dokoko3.jpg" alt="" loading="lazy"><img src="img/strip/pasta3.jpg" alt="" loading="lazy"><img src="img/strip/factory2.jpg" alt="" loading="lazy"><img src="img/strip/clinic2.jpg" alt="" loading="lazy"><img src="img/strip/dokoko1.jpg" alt="" loading="lazy"><img src="img/strip/pasta2.jpg" alt="" loading="lazy"><img src="img/strip/factory1.jpg" alt="" loading="lazy"></div></div>
+
+  <!-- 2. 作っているもの -->
+  <section class="block" id="works" data-sec="2"><div class="wrap">
+    <div class="andon"><span class="lamp"></span><b>01</b><h2>作っているもの</h2><small>RUN</small></div>
+    <p class="sub">ブラウザですぐ使えます。登録はいりません。</p>
+    <div class="works">
+      <a class="work reveal" href="https://mendomilab.com/ja/" data-go="mendomi">
+        <div class="thumb"><img class="pan" src="img/mendomi_full.jpg" alt="造りすぎ工場の画面" loading="lazy"></div>
+        <div class="wbody">
+          <h3>Mendomi Lab</h3>
+          <p>造りすぎや人の配置のムダを ゲームで体験して学べます。研修でも使えます。</p>
+          <span class="go">見てみる →</span>
+        </div>
+      </a>
+      <a class="work reveal" href="https://seidoraga.jp/" data-go="seidoraga">
+        <div class="thumb"><img class="pan" src="img/seido_full.jpg" alt="せいどラガの画面" loading="lazy"></div>
+        <div class="wbody">
+          <h3>せいどラガ</h3>
+          <p>年収の壁やふるさと納税が「うちの場合」いくらになるか 計算できます。</p>
+          <span class="go">計算してみる →</span>
+        </div>
+      </a>
+      <a class="work reveal" href="https://at-works-jp.github.io/dokoko/" data-go="dokoko">
+        <div class="thumb"><img class="pan" src="img/dokoko_full.jpg" alt="どこ高？の画面" loading="lazy"></div>
+        <div class="wbody">
+          <h3>どこ高？</h3>
+          <p>質問に答えると AIが出身高校を当てます。全国約5000校が対象です。</p>
+          <div class="nums"><span>遊ばれた数 <strong id="numPlays">925回</strong></span><span>当たった学校 <strong id="numHits">608校</strong></span></div>
+          <span class="go">遊んでみる →</span>
+        </div>
+      </a>
+      <a class="work reveal" href="https://mendomilab.com/ja/play/pasta/" data-go="pasta">
+        <div class="thumb"><img class="pan" src="img/pasta_full.jpg" alt="回らないパスタ屋の画面" loading="lazy"></div>
+        <div class="wbody">
+          <h3>回らないパスタ屋</h3>
+          <p>お昼のパスタ屋で 何人いればいちばん儲かるかを 試せるゲームです。</p>
+          <span class="go">遊んでみる →</span>
+        </div>
+      </a>
+      <a class="work reveal" href="https://at-works-jp.github.io/clinic/" data-go="clinic">
+        <div class="thumb"><img class="pan" src="img/clinic_full.jpg" alt="待たせないリハビリ室の画面" loading="lazy"></div>
+        <div class="wbody">
+          <h3>待たせないリハビリ室</h3>
+          <p>待ち時間がなぜ生まれるのかを 動かして確かめられます。</p>
+          <span class="go">動かしてみる →</span>
+        </div>
+      </a>
+    </div>
+  </div></section>
+
+  <!-- 大事にしていること（スクロールで1文字ずつ色がつく） -->
+  <div class="slant"></div>
+  <div class="pin" id="pin">
+  <section class="policy" data-sec="3"><div class="wrap">
+    <div class="andon"><span class="lamp"></span><b>02</b><h2>大事にしていること</h2><small>RUN</small></div>
+    <div class="fill" id="fill">
+      <p class="h">「なぜ」から始めます。</p>
+      <p class="s">「そういうもんだ」で終わらせず 理由まで 一緒に考えます。</p>
+      <p class="h">人より <mark>しくみ</mark>を見ます。</p>
+      <p class="s">うまくいかないとき 人を責めずに しくみを見直します。</p>
+      <p class="h">決めるのは あなたです。</p>
+      <p class="s">無理におすすめはしません。試してみて 合うかどうかを決めてください。</p>
+    </div>
+    <div class="meter"><i id="meter"></i></div>
+  </div></section>
+  </div>
+  <div class="slant down"></div>
+
+  <!-- 3. お問い合わせ -->
+  <section class="block" id="contact" data-sec="4"><div class="wrap">
+    <div class="andon"><span class="lamp"></span><b>03</b><h2>お問い合わせ</h2><small>RUN</small></div><span class="open"><i></i>受付中</span>
+    <div class="contact reveal">
+      <p>作ったもののこと 改善のこと お仕事のご相談まで お気軽にどうぞ。</p>
+      <p>まずはお話をうかがいます。整理できていなくて大丈夫です。</p>
+      <a class="mail" id="mailBtn" href="mailto:takagi.tsutomu.works@gmail.com?subject=A%26T%20Works%20%E3%81%B8%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールで問い合わせる</a>
+    </div>
+  </div></section>
+</main>
+
+<footer data-sec="5"><div class="wrap">
+  <div>お問い合わせ：<a href="mailto:takagi.tsutomu.works@gmail.com?subject=A%26T%20Works%20%E3%81%B8%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">takagi.tsutomu.works@gmail.com</a></div>
+  <div>運営：高木 務（A&amp;T Works）</div>
+  <div>Mendomi Lab・せいどラガ・どこ高？は A&amp;T Works のプロジェクトです。</div>
+  <div>© 2026 A&amp;T Works</div>
+  <div class="bigfoot" aria-hidden="true">A&amp;T WORKS</div>
+</div></footer>
+
+<script>
+(function(){
+  const API='https://script.google.com/macros/s/AKfycbwvDe4IB8MTCbk8fFIwR8zSEFPdmAZ8S2rEXPCSkZ0zkuhaToa9XshZN86Qet4Wco77/exec';
+  const q=new URLSearchParams(location.search);
+  const vid=q.get('vid')||Math.random().toString(36).slice(2,12);
+  let cid=q.get('cid')||''; if(!cid){ try{ cid=localStorage.getItem('koukou-client')||''; }catch(e){} }
+  const refurl=String(document.referrer||'').slice(0,300);
+  let refhost=''; try{ refhost=refurl?new URL(refurl).hostname:''; }catch(e){}
+  const from=q.get('from')||(refhost||'(なし)');
+  function dev(){ const ua=navigator.userAgent||''; let os='その他'; if(/iPhone|iPod/.test(ua)) os='iPhone'; else if(/iPad/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)) os='iPad'; else if(/Android/.test(ua)) os='Android'; else if(/Windows/.test(ua)) os='Windows'; else if(/Macintosh/.test(ua)) os='Mac';
+    let inapp=''; if(/Line\//i.test(ua)) inapp='LINE'; else if(/Instagram/i.test(ua)) inapp='Instagram'; else if(/FBAN|FBAV/.test(ua)) inapp='Facebook'; else if(/musical_ly|TikTok|BytedanceWebview/i.test(ua)) inapp='TikTok'; else if(/Twitter/i.test(ua)) inapp='X';
+    let tz=''; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''; }catch(e){}
+    return {os,inapp,mobile:/Mobi|iPhone|Android/.test(ua)?1:0,screen:(screen.width||0)+'x'+(screen.height||0),view:innerWidth+'x'+innerHeight,dpr:devicePixelRatio||1,lang:navigator.language||'',tz,tzo:-new Date().getTimezoneOffset()}; }
+  const base=Object.assign({vid,client:cid,from,ref:refhost,refurl,page:location.href.slice(0,200)},dev());
+  function send(ev,extra,beacon){ const body=JSON.stringify({fn:'logMaker',args:[Object.assign({},base,{ev},extra||{})]});
+    if(!/^https:/.test(location.protocol)||!/(github\.io|mendomilab\.com)$/.test(location.hostname)) { console.log('logMaker',body); return; }
+    try{ if(beacon && navigator.sendBeacon && navigator.sendBeacon(API,body)) return; }catch(e){}
+    try{ fetch(API,{method:'POST',keepalive:true,body}); }catch(e){} }
+  let shown=0, since=document.visibilityState==='visible'?Date.now():0, maxScroll=0, maxSect=0, sentLeave=0;
+  const secs=[...document.querySelectorAll('[data-sec]')];
+  function measure(){ const h=document.documentElement.scrollHeight-innerHeight; const p=h>0?Math.round(100*scrollY/h):100; if(p>maxScroll) maxScroll=Math.min(100,p);
+    secs.forEach(s=>{ const r=s.getBoundingClientRect(); if(r.top<innerHeight*0.8){ const n=+s.dataset.sec; if(n>maxSect) maxSect=n; } }); }
+  addEventListener('scroll',measure,{passive:true}); measure();
+  function dur(){ return Math.round((shown+(since?Date.now()-since:0))/1000); }
+  function leave(){ if(dur()<=sentLeave) return; sentLeave=dur(); send('leave',{dur:sentLeave,scroll:maxScroll,sect:String(maxSect)},true); }
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden'){ if(since){ shown+=Date.now()-since; since=0; } leave(); } else { since=Date.now(); } });
+  addEventListener('pagehide',leave);
+  send('open',{scroll:maxScroll,sect:String(maxSect)});
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.addEventListener('click',()=>send('mail',{dur:dur(),scroll:maxScroll,sect:String(maxSect)},true)));
+  // 作品カードを押したら どれを押したかを記録（shares に go-mendomi など）
+  document.querySelectorAll('.work[data-go]').forEach(a=>a.addEventListener('click',()=>send('leave',{dur:dur(),scroll:maxScroll,sect:String(maxSect),shares:'go-'+a.dataset.go},true)));
+  // 大事にしていること：スクロールに合わせて1文字ずつ色をつける
+  (function(){ const box=document.getElementById('fill'); if(!box) return; const cs=[];
+    box.querySelectorAll('p').forEach(p=>{ const out=document.createDocumentFragment();
+      p.childNodes.forEach(n=>{ if(n.nodeType===3){ [...n.textContent].forEach(ch=>{ const sp=document.createElement('span'); sp.className='c'; sp.textContent=ch; out.appendChild(sp); cs.push(sp); }); }
+        else if(n.nodeName==='MARK'){ [...n.textContent].forEach(ch=>{ const sp=document.createElement('span'); sp.className='c hl'; sp.textContent=ch; out.appendChild(sp); cs.push(sp); }); }
+        else out.appendChild(n.cloneNode(true)); });
+      p.textContent=''; p.appendChild(out); });
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ cs.forEach(c=>c.classList.add('on')); return; }
+    const pin=document.getElementById('pin'), meter=document.getElementById('meter');
+    function upd(){ let k; if(pin&&getComputedStyle(pin).height!=='auto'&&pin.offsetHeight>innerHeight){ const r=pin.getBoundingClientRect(); k=Math.max(0,Math.min(1,(-r.top+innerHeight*0.15)/(pin.offsetHeight-innerHeight*0.9))); } else { const r=box.getBoundingClientRect(); k=Math.max(0,Math.min(1,(innerHeight*0.85-r.top)/(r.height+innerHeight*0.25))); } if(meter) meter.style.width=(k*100)+'%';
+      const n=Math.round(k*cs.length); cs.forEach((c,i)=>c.classList.toggle('on',i<n)); }
+    addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd(); })();
+  // ===== 最大版の動き =====
+  (function(){
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // 一言を1文字ずつ
+    const big=document.querySelector('.big'); if(big&&!reduce){ let i=0;
+      const wrap=n=>{ if(n.nodeType===3){ const f=document.createDocumentFragment(); [...n.textContent].forEach(ch=>{ const sp=document.createElement('span'); sp.className='ch'; sp.textContent=ch; sp.style.animationDelay=(0.15+i++*0.045)+'s'; f.appendChild(sp); }); n.replaceWith(f); } else if(n.nodeName!=='BR') [...n.childNodes].forEach(wrap); };
+      [...big.childNodes].forEach(wrap); }
+    // ステッカーをスクロールで少しずらす
+    const stks=[...document.querySelectorAll('.stk')]; const sp=[.18,-.12,.1,-.2,.14];
+    // アンドン点灯
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('lit'); }),{threshold:.9});
+    document.querySelectorAll('.andon').forEach(a=>io.observe(a));
+    // 生産ライン
+    const done=document.getElementById('lineDone'), item=document.getElementById('lineItem'), sts=[...document.querySelectorAll('.line .st')];
+    function tick(){ const h=document.documentElement.scrollHeight-innerHeight; const k=h>0?Math.min(1,scrollY/h):1;
+      const W=item.parentNode.clientWidth-40; const x=20+W*k; item.style.left=x+'px'; done.style.width=(W*k)+'px';
+      sts.forEach(st=>{ const t=document.getElementById(st.dataset.at); if(t) st.classList.toggle('on', t.getBoundingClientRect().top<innerHeight*0.6); });
+      if(!reduce) stks.forEach((el,j)=>el.style.setProperty('--py',(scrollY*sp[j%sp.length]).toFixed(1)+'px')); }
+    addEventListener('scroll',tick,{passive:true}); addEventListener('resize',tick); tick();
+    // カードを傾ける（マウスのときだけ）
+    if(!reduce&&matchMedia('(hover:hover)').matches) document.querySelectorAll('.work').forEach(c=>{
+      c.addEventListener('mousemove',e=>{ const r=c.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5; c.style.transform='rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg) translateY(-3px)'; });
+      c.addEventListener('mouseleave',()=>{ c.style.transform=''; }); });
+    // お問い合わせボタンが少しだけ指に寄ってくる
+    const mb=document.getElementById('mailBtn'); if(mb&&!reduce&&matchMedia('(hover:hover)').matches){
+      mb.addEventListener('mousemove',e=>{ const r=mb.getBoundingClientRect(); mb.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.3)+'px)'; });
+      mb.addEventListener('mouseleave',()=>{ mb.style.transform=''; }); }
+  })();
+  // 下に読み進めたら ふわっと出す
+  try{ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }),{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el)); }catch(e){ document.querySelectorAll('.reveal').forEach(el=>el.classList.add('on')); }
+  // どこ高の数字を 0 から数え上げる（見えたときに1回だけ）
+  const target={numPlays:925,numHits:608}; let counted=false;
+  function countUp(){ if(counted) return; counted=true; const t0=performance.now(), D=1400;
+    (function step(t){ const k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3);
+      document.getElementById('numPlays').textContent=Math.round(target.numPlays*e).toLocaleString('ja-JP')+'回';
+      document.getElementById('numHits').textContent=Math.round(target.numHits*e).toLocaleString('ja-JP')+'校';
+      if(k<1) requestAnimationFrame(step); })(t0); }
+  try{ const nio=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ countUp(); nio.disconnect(); } },{threshold:.6}); nio.observe(document.getElementById('numPlays')); }catch(e){}
+  // どこ高の数字を最新にする（取れないときは書いてある数のまま）
+  try{ fetch(API,{method:'POST',body:JSON.stringify({fn:'getPublicNums',args:[]})}).then(r=>r.json()).then(j=>{ const n=j&&j.ok&&j.r; if(!n) return;
+    const put=(id,v,u)=>{ v=Number(v); if(isFinite(v)&&v>0){ target[id]=v; if(counted) document.getElementById(id).textContent=v.toLocaleString('ja-JP')+u; } };
+    put('numPlays',n.plays,'回'); put('numHits',n.hitSchools,'校'); }).catch(()=>{}); }catch(e){}
+})();
+</script>
+</body>
+</html>
